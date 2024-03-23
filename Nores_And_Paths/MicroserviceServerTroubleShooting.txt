@@ -1,0 +1,13 @@
+If you add the cloud starter and actuator dependency to your project
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+you will have a number of managing endpoints (provided by the actuator). A POST to /pause will result in a status of DOWN in Eureka (thanks to cloud-starter). When the eureka clients receive the status, Ribbon won't route any request to your DOWN service. Posting to /shutdown will gracefully stop the application.
